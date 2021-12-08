@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 2</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+    crossorigin="anonymous"></script>
+    <style>
+
+        table {
+            margin: 0 auto;
+            font-size: large;
+            border: 1px solid black;
+        }
+        h1 {
+            text-align: center;
+            color: #006600;
+            font-size: xx-large;
+            font-family: 'Gill Sans',
+                'Gill Sans MT', ' Calibri',
+                'Trebuchet MS', 'sans-serif';
+        }
+        td {
+        background-color: khaki;
+        border: 1px solid black;
+        }
+        th,td {
+        font-weight: bold;
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+        }
+        td {
+        font-weight: lighter;
+        }
+    </style>
+    <script>
+
+        $(document).ready(function(){
+            //fetch json data 
+            $.getJSON("product.json",function(product){
+                var proData='';
+                $.each(product,function(key,value){
+                    proData+='<tr>';
+                        proData+='<td>' + value.Id + '</td>';
+                        proData+='<td>' + value.Maker + '</td>';
+                        proData+='<td><img src="' + value.img + '"height=100px width=100px></td>';
+                        proData+='<td><a href="' + value.Url + '">'+value.Url+'</a></td>';
+                        proData+='<td>' + value.Title + '</td>';
+                        proData+='<td>' + value.Description+ '</td>';
+                        proData+='<td>' + value.Ratings + '</td>';
+                    proData+='</tr>';
+                });
+                $("#table").append(proData);
+            })
+           });
+    
+    </script>
+</head>
+<body>
+    <div>
+        <h1> Product List </h1>
+        <table id='table'>
+            <tr>
+                <th>ID</th>
+                <th>MAKER</th>
+                <th>IMAGE</th>
+                <th>URL</th>
+                <th>TITLE</th>
+                <th>DESCRIPTION</th>
+                <th>RATINGS</th>
+            </tr>
+    </table>
+    </div>
+</body>
